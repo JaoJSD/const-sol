@@ -25,8 +25,7 @@ return lstFtoC
 
 FahrToC:
   parse arg tmpF
-    cdeg = (5/9) * (tmpF - 32)
-    say cdeg
+    cdeg = (5/9) * (tmpF - 32)    
   select
     when cdeg < 0 | cdeg >= 9.5 then
       celsdg = format(cdeg, length(trunc(cdeg, 0)) + 1, 0)
