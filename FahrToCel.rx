@@ -1,1 +1,35 @@
+/* Main Program */
+
 lstTemp = numVals()
+say lstTemp
+exit
+
+numVals: procedure expose  vals nVals nTmp lstFtoC
+  pull vals
+  parse var vals nVals vals  
+  lstFtoC = ' '
+  nTmp = 1  
+  valTemp = numTemp()  
+return valTemp
+
+numTemp:  
+  parse var vals tempN vals  
+    if nTmp > nVals then
+    return lstFtoC
+    else
+      FtoC = FahrToC(tempN)
+      nTmp = nTmp + 1  
+      lstFtoC = insert(FtoC, lstFtoC, length(lstFtoC) - 1, length(FtoC))      
+    call numTemp
+return lstFtoC
+
+FahrToC:
+  parse arg tmpF
+    cdeg = (5/9) * (tmpF - 32)  
+  select
+    when cdeg < 0 | cdeg >= 9.5 then
+      celsdg = format(cdeg, length(trunc(cdeg, 0)) + 1, 0)
+    otherwise
+      celsdg = format(cdeg, length(trunc(cdeg, 0)), 0)
+    end
+return celsdg
